@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Add</title>
+    <div th:replace="fragments :: headerlinks" th:remove="tag"></div>
+</head>
+<body>
+<div th:replace="fragments :: navigator"></div>
+<main role="main" class="main">
+    <div class="container">
+        <div class="row col-md-12 list-container">
+            <div class="row col-md-12">
+                <h1>Grade form</h1>
+            </div>
+
+            <div class="row col-md-12 form-container">
+                <form th:action="@{/grade/add}" method="post" th:object="${grade}" class="col-md-12">
+                    <input type="hidden" th:field="*{id}" th:value="*{id}">
+                    <input type="hidden" th:field="${studentId}" th:value="${studentId}">
+
+                    <div class="row col-md-12 form-row-container">
+                        <div class="col-md-6">
+                            <label for="subjectId">Subject:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select th:name="subjectId" id="subjectId" class="form-control col-md-12">
+                                <option th:each="subject : ${subjects}" th:text="${subject}" th:value="${subject}">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 form-row-container">
+                        <div class="col-md-6">
+                            <label for="gradeValue">Grade:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" step="0.5" min="2" max="5" id="gradeValue" th:field="*{grade}"
+                                   th:value="*{grade}" class="form-control col-md-12">
+                        </div>
+                    </div>
+
+                    <!--<div class="row col-md-12 form-row-container">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<label for="student">Student Id:</label>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="number" id="student" th:field="*{student.getId()}"-->
+                                   <!--th:value="*{student.getId()}" class="form-control col-md-12">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="row col-md-12">
+                        <div class="col-md-6">
+                            <button type="reset" class="btn btn-outline-danger offset-3 col-md-6">Reset</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-outline-success offset-3 col-md-6">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</main>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+    <th:block th:fragment="headerlinks">
+        <link rel="stylesheet"
+              th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}"/>
+        <link rel="stylesheet"
+              th:href="@{/style.css}"/>
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="navigator">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-11 text-center">
+                <a class="blog-header-logo text-dark" href="/">Online Gradebook</a>
+            </div>
+            <div class="col-1 d-flex justify-content-end align-items-center">
+                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" th:href="@{/student/list}">Student List</a>
+            <a class="p-2 text-muted" th:href="@{/student/add}">Student Add</a>
+            <a class="p-2 text-muted" th:href="@{/grade/add}">Grade Add</a>
+        </nav>
+    </div>
+</th:block>
+
+<th:block th:fragment="footer">
+    <footer class="blog-footer">
+        <!--<p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>-->
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
+</th:block>
+
+<th:block th:fragment="scripts">
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</th:block>
+</body>
+</html>
