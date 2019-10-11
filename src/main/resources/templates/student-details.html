@@ -13,28 +13,35 @@
             <div class="row col-md-12">
                 <h1>Student Details:</h1>
             </div>
-            <div class="row col-md-12 list-header-row" th:object="${student}">
-                <div class="col-md-1" th:text="*{id}"></div>
-                <div class="col-md-2" th:text="*{name}"></div>
-                <div class="col-md-2" th:text="*{surname}"></div>
-                <div class="col-md-2" th:text="*{age}"></div>
-                <div class="col-md-5"></div>
+            <div class="row col-md-12" th:object="${student}">
+                <div class="row col-md-12 list-row" th:object="${student}">
+                    <div class="col-md-2 font-weight-bold">Id:</div>
+                    <div class="col-md-2" th:text="*{id}"></div>
+                </div>
+                <div class="row col-md-12 list-row" th:object="${student}">
+                    <div class="col-md-2 font-weight-bold">Name:</div>
+                    <div class="col-md-2" th:text="*{name}"></div>
+                </div>
+                <div class="row col-md-12 list-row" th:object="${student}">
+                    <div class="col-md-2 font-weight-bold">Surname:</div>
+                    <div class="col-md-2" th:text="*{surname}"></div>
+                </div>
+                <div class="row col-md-12 list-row" th:object="${student}">
+                    <div class="col-md-2 font-weight-bold">Age:</div>
+                    <div class="col-md-2" th:text="*{age}"></div>
+                </div>
             </div>
             <div class="row col-md-12 list-row" th:object="${student}">
-                <div class="row col-md-12" >
-                    <div class="col-md-4">
+                <div class="row col-md-6"></div>
+                <div class="row col-md-6">
+                    <div class="col-md-6">
                         <a th:href="@{'/grade/add?id='+${student.getId()}}" class="col-md-12">
                             <button type="button" class="btn btn-outline-secondary col-md-12">Grade add</button>
                         </a>
                     </div>
-                    <div class="col-md-4">
-                        <a th:href="@{'/grades?id='+${student.getId()}}" class="col-md-12">
+                    <div class="col-md-6">
+                        <a th:href="@{'/student/grades?id='+${student.getId()}}" class="col-md-12">
                             <button type="button" class="btn btn-outline-warning col-md-12">Grade List</button>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a th:href="@{'/student/details?id='+${student.getId()}}" class="col-md-12">
-                            <button type="button" class="btn btn-outline-success col-md-12">Details</button>
                         </a>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,12 +24,15 @@ public class Grade {
 
     @CreationTimestamp
     @Column(updatable = false)
+//    nie działa:
+//    @DateTimeFormat(pattern = "dd-MM-YYYY")
     private LocalDateTime dateAdded;
 
     private double grade;
 
     @ToString.Exclude
     @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 
     public Grade(GradeSubject subject, double grade) {

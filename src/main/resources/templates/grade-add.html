@@ -15,20 +15,23 @@
             </div>
 
             <div class="row col-md-12 form-container">
-                <form th:action="@{/grade/add}" method="post" th:object="${grade}" class="col-md-12">
+                <form th:action="@{/grade/add/}" method="post" th:object="${grade}" class="col-md-12">
                     <input type="hidden" th:field="*{id}" th:value="*{id}">
-                    <input type="hidden" th:field="${studentId}" th:value="${studentId}">
+                    <!--<input th:if="${student.getId()!=null}" type="hidden" th:value="*{student}"/>-->
+                    <!--<input type="hidden" th:value="*{student.getId()}"/>-->
+
 
                     <div class="row col-md-12 form-row-container">
                         <div class="col-md-6">
                             <label for="subjectId">Subject:</label>
                         </div>
                         <div class="col-md-6">
-                            <select th:name="subjectId" id="subjectId" class="form-control col-md-12">
+                            <select th:field="*{subject}" th:name="subjectId" id="subjectId" class="form-control">>
                                 <option th:each="subject : ${subjects}" th:text="${subject}" th:value="${subject}">
                             </select>
                         </div>
                     </div>
+
                     <div class="row col-md-12 form-row-container">
                         <div class="col-md-6">
                             <label for="gradeValue">Grade:</label>
@@ -38,16 +41,6 @@
                                    th:value="*{grade}" class="form-control col-md-12">
                         </div>
                     </div>
-
-                    <!--<div class="row col-md-12 form-row-container">-->
-                        <!--<div class="col-md-6">-->
-                            <!--<label for="student">Student Id:</label>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-6">-->
-                            <!--<input type="number" id="student" th:field="*{student.getId()}"-->
-                                   <!--th:value="*{student.getId()}" class="form-control col-md-12">-->
-                        <!--</div>-->
-                    <!--</div>-->
                     <div class="row col-md-12">
                         <div class="col-md-6">
                             <button type="reset" class="btn btn-outline-danger offset-3 col-md-6">Reset</button>

@@ -30,8 +30,8 @@ public class StudentService {
         return studentRepository.findById(id);
     }
 
-
     public List<Student> getAll() {
         return studentRepository.findAll();
     }
+
 }

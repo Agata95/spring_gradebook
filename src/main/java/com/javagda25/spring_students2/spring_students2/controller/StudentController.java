@@ -5,10 +5,7 @@ import com.javagda25.spring_students2.spring_students2.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -74,6 +71,19 @@ public class StudentController {
             model.addAttribute("student", optionalStudent.get());
             model.addAttribute("referer", request.getHeader("referer"));
             return "student-details";
+        }
+        return "redirect:/student/list";
+    }
+
+    @GetMapping("/grades")
+    public String getPHBooks(Model model, @RequestParam(name = "id") Long id) {
+        Optional<Student> studentOptional = studentService.findByStudentId(id);
+        if (studentOptional.isPresent()) {
+            Student student = studentOptional.get();
+
+            model.addAttribute("grades", student.getGrades());
+
+            return "grade-list";
         }
         return "redirect:/student/list";
     }

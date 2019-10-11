@@ -20,33 +20,76 @@ public class GradeController {
     private final GradeService gradeService;
     private final StudentService studentService;
 
+//    @GetMapping("/add")
+//    public String gradeAdd(Model model,
+//                           Grade grade){
+//        grade.setGrade(2.0);
+//        model.addAttribute("studentId", studentService.getAll());
+//        model.addAttribute("subjects", GradeSubject.values());
+//        model.addAttribute("grade", grade);
+//        return "grade-add";
+//    }
+
+    //    bez relacji
+//    @GetMapping("/add")
+//    public String gradeAdd(Model model, Grade grade){
+//        grade.setGrade(2.0);
+//        model.addAttribute("subjects", GradeSubject.values());
+//        model.addAttribute("grade", grade);
+//        return "grade-add";
+//    }
+
+//    @GetMapping("/add")
+//    public String gradeAdd(Model model,
+//                           Grade grade,
+//                           @RequestParam(name = "id") Long studentId) {
+//        grade.setGrade(2.0);
+//        Optional<Student> student = studentService.findByStudentId(studentId);
+//        model.addAttribute("student", student.get());
+//        model.addAttribute("subjects", GradeSubject.values());
+//        model.addAttribute("grade", grade);
+//        return "grade-add";
+//    }
+
     @GetMapping("/add")
     public String gradeAdd(Model model,
-                           Grade grade){
+                           Grade grade,
+                           @RequestParam(name = "id") Long studentId) {
         grade.setGrade(2.0);
-        model.addAttribute("studentId", studentService.getAll());
+        model.addAttribute("student", studentId);
         model.addAttribute("subjects", GradeSubject.values());
         model.addAttribute("grade", grade);
+
         return "grade-add";
     }
+//    @GetMapping("/add")
+//    public String gradeAdd(Model model,
+//                           Grade grade) {
+//        grade.setGrade(2.0);
+//        model.addAttribute("student", studentService.getAll());
+//        model.addAttribute("subjects", GradeSubject.values());
+//        model.addAttribute("grade", grade);
+//        return "grade-add";
+//    }
+
 
     @PostMapping("/add")
-    public String gradeAdd(Grade grade, Long studentId){
+    public String gradeAdd(Grade grade, Long studentId) {
+//        grade.getStudent().setId(studentId);
         gradeService.saveGrade(grade, studentId);
 
         return "redirect:/student/list";
     }
 
-//    @GetMapping("/grades")
-//    public String studentGrades(Model model,
-//                                @RequestParam(name = "id") Long studentId) {
-//        Optional<Student> studentOptional = studentService.findByStudentId(studentId);
-//        if(studentOptional.isPresent()){
-//            model.addAttribute("grades", studentOptional.get().getGrades());
-//            return "grade-list";
-//        }
+//    bez relacji
+//    @PostMapping("/add")
+//    public String gradeAdd(Grade grade) {
+//        gradeService.saveGrade(grade);
+//
 //        return "redirect:/student/list";
 //    }
+
+
 //
 //    @GetMapping("/list")
 //    public String gradeList(Model model){

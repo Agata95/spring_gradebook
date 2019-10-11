@@ -20,11 +20,16 @@ public class GradeService {
         if (studentRepository.existsById(studentId)) {
             Student student = studentRepository.getOne(studentId);
             grade.setStudent(student);
+            grade.getStudent().setId(studentId);
             gradeRepository.save(grade);
         } else {
             throw new EntityNotFoundException("Student not found.");
         }
     }
+
+//    public void saveGrade(Grade grade) {
+//        gradeRepository.save(grade);
+//    }
 
     public List<Grade> listAllGrade() {
         return gradeRepository.findAll();

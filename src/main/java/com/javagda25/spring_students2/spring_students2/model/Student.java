@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -32,7 +33,7 @@ public class Student {
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @Cascade(value = {org.hibernate.annotations.CascadeType.REMOVE})
-    private Set<Grade> grades;
+    private Set<Grade> grades = new HashSet<>();
 
 
     public Student(String name, String surname, int age) {
