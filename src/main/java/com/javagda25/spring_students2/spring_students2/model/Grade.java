@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,7 +27,7 @@ public class Grade {
 //    @DateTimeFormat(pattern = "dd-MM-YYYY")
     private LocalDateTime dateAdded;
 
-    private double grade;
+    private double gradeVal;
 
     @ToString.Exclude
     @ManyToOne
@@ -37,6 +36,6 @@ public class Grade {
 
     public Grade(GradeSubject subject, double grade) {
         this.subject = subject;
-        this.grade = grade;
+        this.gradeVal = grade;
     }
 }

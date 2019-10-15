@@ -24,7 +24,7 @@
                 <div class="col-md-1" th:text="${grade.getId()}"></div>
                 <div class="col-md-2" th:text="${grade.getSubject()}"></div>
                 <div class="col-md-2" th:text="${grade.getDateAdded()}"></div>
-                <div class="col-md-2" th:text="${grade.getGrade()}"></div>
+                <div class="col-md-2" th:text="${grade.getGradeVal()}"></div>
                 <div class="row col-md-5" >
                     <div class="col-md-4">
                         <a th:href="@{'/grade/remove?id='+${grade.getId()}}" class="col-md-12">

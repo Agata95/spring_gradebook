@@ -17,12 +17,12 @@ public class GradeService {
     private final GradeRepository gradeRepository;
     private final StudentRepository studentRepository;
 
-//    public void saveGrade(Grade grade, Long studentId) {
+//    public void saveGrade(Grade gradeVal, Long studentId) {
 //        if (studentRepository.existsById(studentId)) {
 //            Student student = studentRepository.getOne(studentId);
-//            grade.setStudent(student);
-//            grade.getStudent().setId(studentId);
-//            gradeRepository.save(grade);
+//            gradeVal.setStudent(student);
+//            gradeVal.getStudent().setId(studentId);
+//            gradeRepository.save(gradeVal);
 //        } else {
 //            throw new EntityNotFoundException("Student not found.");
 //        }
@@ -38,8 +38,8 @@ public class GradeService {
         }
     }
 
-//    public void saveGrade(Grade grade) {
-//        gradeRepository.save(grade);
+//    public void saveGrade(Grade gradeVal) {
+//        gradeRepository.save(gradeVal);
 //    }
 
     public List<Grade> listAllGrade() {
