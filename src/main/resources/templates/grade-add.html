@@ -17,9 +17,19 @@
             <div class="row col-md-12 form-container">
                 <form th:action="@{/grade/add/}" method="post" th:object="${grade}" class="col-md-12">
                     <input type="hidden" th:field="*{id}" th:value="*{id}">
-                    <!--<input th:if="${student.getId()!=null}" type="hidden" th:value="*{student}"/>-->
-                    <!--<input type="hidden" th:value="*{student.getId()}"/>-->
+                    <input type="hidden" name="studentParam" th:value="${student}">
+                    <!--<input th:if="${student!=null}" type="hidden" th:value="*{student}"/>-->
+                    <!--<input type="hidden" th:field="${student}" th:value="*{student.getId()}"/>-->
 
+                    <!--<div class="row col-md-12 form-row-container">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<label for="studentId">Id:</label>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                        <!--<input type="number" id="studentId" th:field="*{student}"-->
+                               <!--th:value="*{student}" class="form-control col-md-12">-->
+                    <!--</div>-->
+                    <!--</div>-->
 
                     <div class="row col-md-12 form-row-container">
                         <div class="col-md-6">

@@ -56,9 +56,9 @@ public class GradeController {
                            Grade grade,
                            @RequestParam(name = "id") Long studentId) {
         grade.setGrade(2.0);
-        model.addAttribute("student", studentId);
-        model.addAttribute("subjects", GradeSubject.values());
         model.addAttribute("grade", grade);
+        model.addAttribute("subjects", GradeSubject.values());
+        model.addAttribute("student", studentId);
 
         return "grade-add";
     }
@@ -78,7 +78,7 @@ public class GradeController {
 //        grade.getStudent().setId(studentId);
         gradeService.saveGrade(grade, studentId);
 
-        return "redirect:/student/list";
+        return "redirect:/grade/list";
     }
 
 //    bez relacji
@@ -90,12 +90,12 @@ public class GradeController {
 //    }
 
 
-//
-//    @GetMapping("/list")
-//    public String gradeList(Model model){
-//        List<Grade> gradeList = gradeService.listAllGrade();
-//        model.addAttribute("grades", gradeList);
-//        return "grade-list";
-//    }
+
+    @GetMapping("/list")
+    public String gradeList(Model model){
+        List<Grade> gradeList = gradeService.listAllGrade();
+        model.addAttribute("grades", gradeList);
+        return "grade-list";
+    }
 
 }
