@@ -2,6 +2,7 @@ package com.javagda25.spring_students2.spring_students2.controller;
 
 import com.javagda25.spring_students2.spring_students2.model.Grade;
 import com.javagda25.spring_students2.spring_students2.model.GradeSubject;
+import com.javagda25.spring_students2.spring_students2.model.Student;
 import com.javagda25.spring_students2.spring_students2.service.GradeService;
 import com.javagda25.spring_students2.spring_students2.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @AllArgsConstructor
@@ -32,30 +36,51 @@ public class GradeController {
         return "grade-add";
     }
 
-
     @PostMapping("/add")
     public String gradeAdd(Grade grade, Long studentId) {
-//        gradeVal.getStudent().setId(studentId);
         gradeService.saveGrade(grade, studentId);
 
-        return "redirect:/gradeVal/list";
+        return "redirect:/student/grades?id=" + studentId;
     }
-
-//    bez relacji
-//    @PostMapping("/add")
-//    public String gradeAdd(Grade gradeVal) {
-//        gradeService.saveGrade(gradeVal);
-//
-//        return "redirect:/student/list";
-//    }
-
 
 
     @GetMapping("/list")
-    public String gradeList(Model model){
+    public String gradeList(Model model) {
         List<Grade> gradeList = gradeService.listAllGrade();
         model.addAttribute("grades", gradeList);
         return "grade-list";
+    }
+
+    @GetMapping("/remove")
+    public String gradeRemove(HttpServletRequest request,
+                              @RequestParam(name = "id") Long gradeId) {
+        String referer = request.getHeader("referer");
+
+        gradeService.remove(gradeId);
+
+        if (referer != null) {
+            return "redirect:" + referer;
+        }
+
+        return "redirect:/student/list";
+    }
+
+    @GetMapping("/edit")
+    public String gradeEdit(Model model,
+                            @RequestParam(name = "id") Long gradeId) {
+
+        Long studentId = gradeService.findByGradeId(gradeId).get().getStudent().getId();
+
+        Optional<Grade> optionalGrade = gradeService.findByGradeId(gradeId);
+        if (optionalGrade.isPresent()) {
+            model.addAttribute("grade", optionalGrade.get());
+            model.addAttribute("subjects", GradeSubject.values());
+            model.addAttribute("student", studentId);
+
+            return "grade-add";
+        }
+
+        return "redirect:/student/list";
     }
 
 }

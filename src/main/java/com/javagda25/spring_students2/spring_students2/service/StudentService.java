@@ -1,5 +1,6 @@
 package com.javagda25.spring_students2.spring_students2.service;
 
+import com.javagda25.spring_students2.spring_students2.model.Grade;
 import com.javagda25.spring_students2.spring_students2.model.Student;
 import com.javagda25.spring_students2.spring_students2.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
@@ -33,5 +34,6 @@ public class StudentService {
     public List<Student> getAll() {
         return studentRepository.findAll();
     }
+
 
 }

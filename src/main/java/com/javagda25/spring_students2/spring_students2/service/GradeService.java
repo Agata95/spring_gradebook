@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -38,11 +39,20 @@ public class GradeService {
         }
     }
 
-//    public void saveGrade(Grade gradeVal) {
-//        gradeRepository.save(gradeVal);
-//    }
-
     public List<Grade> listAllGrade() {
         return gradeRepository.findAll();
+    }
+
+    public void remove(Long gradeId) {
+        gradeRepository.deleteById(gradeId);
+    }
+
+    public Optional<Grade> findByGradeId(Long gradeId) {
+        return gradeRepository.findById(gradeId);
+    }
+
+
+    public Set<Grade> setAllGrades() {
+        return (Set<Grade>) gradeRepository.findAll();
     }
 }

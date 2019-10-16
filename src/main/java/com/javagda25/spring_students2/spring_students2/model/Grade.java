@@ -1,5 +1,7 @@
 package com.javagda25.spring_students2.spring_students2.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,14 +25,14 @@ public class Grade {
 
     @CreationTimestamp
     @Column(updatable = false)
-//    nie działa:
-//    @DateTimeFormat(pattern = "dd-MM-YYYY")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm")
     private LocalDateTime dateAdded;
 
     private double gradeVal;
 
     @ToString.Exclude
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "student_id")
     private Student student;
 
