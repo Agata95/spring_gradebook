@@ -23,7 +23,8 @@
                             <label for="name">Name:</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" id="name" th:field="*{name}" th:value="*{name}" class="form-control col-md-12">
+                            <input type="text" id="name" th:field="*{name}" th:value="*{name}"
+                                   class="form-control col-md-12">
                         </div>
                     </div>
                     <div class="row col-md-12 form-row-container">
@@ -31,7 +32,8 @@
                             <label for="surname">Surname:</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" id="surname" th:field="*{surname}" th:value="*{surname}" class="form-control col-md-12">
+                            <input type="text" id="surname" th:field="*{surname}" th:value="*{surname}"
+                                   class="form-control col-md-12">
                         </div>
                     </div>
                     <div class="row col-md-12 form-row-container">
@@ -39,7 +41,8 @@
                             <label for="age">Age:</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="number" min="7" max="30" id="age" th:field="*{age}" th:value="*{age}" class="form-control col-md-12">
+                            <input type="number" min="7" max="30" id="age" th:field="*{age}" th:value="*{age}"
+                                   class="form-control col-md-12">
                         </div>
                     </div>
 
@@ -52,6 +55,22 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="row col-md-12" th:field="${student}">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <span th:if="${student.getId()!=null}">
+                        <a th:href="@{'/student/details?id='+${student.getId()}}">
+                        <button type="button" class="btn btn-link col-md-12">Back to Student Details</button>
+                    </a>
+                    </span>
+                    <span th:unless="${student.getId()!=null}">
+                        <a th:href="@{/student/list}">
+                        <button type="button" class="btn btn-link col-md-12">Back to Student List</button>
+                    </a>
+                    </span>
+                </div>
+                <div class="col-md-4"></div>
             </div>
         </div>
     </div>

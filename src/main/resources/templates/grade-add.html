@@ -49,6 +49,15 @@
                     </div>
                 </form>
             </div>
+            <div class="row col-md-12" th:field="${student}">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <a th:href="@{'/student/details?id='+${student}}">
+                        <button type="button" class="btn btn-link col-md-12">Back to Student Details</button>
+                    </a>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
         </div>
     </div>
 

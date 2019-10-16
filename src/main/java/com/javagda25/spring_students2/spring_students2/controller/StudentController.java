@@ -37,17 +37,14 @@ public class StudentController {
     public String studentAdd(Student student) {
         studentService.saveStudent(student);
 
-        return "redirect:/student/list";
+        return "redirect:/student/details?id=" + student.getId();
     }
 
     @GetMapping("/remove")
-    public String studentRemove(HttpServletRequest request,
-                                @RequestParam(name = "id") Long id) {
-        String referer = request.getHeader("referer");
+    public String studentRemove(@RequestParam(name = "id") Long id) {
+
         studentService.removeStudentById(id);
-        if (referer != null) {
-            return "redirect:" + referer;
-        }
+
         return "redirect:/student/list";
     }
 
@@ -59,29 +56,29 @@ public class StudentController {
             model.addAttribute("student", optionalStudent.get());
             return "student-add";
         }
-        return "redirect:/student/list";
+        return "redirect:/student/details";
     }
 
     @GetMapping("/details")
     public String studentDetails(Model model,
-                                 HttpServletRequest request,
                                  @RequestParam(name = "id") Long id) {
         Optional<Student> optionalStudent = studentService.findByStudentId(id);
         if (optionalStudent.isPresent()) {
             model.addAttribute("student", optionalStudent.get());
-            model.addAttribute("referer", request.getHeader("referer"));
             return "student-details";
         }
-        return "redirect:/student/list";
+        return "redirect:/student/details";
     }
 
     @GetMapping("/grades")
-    public String getPHBooks(Model model, @RequestParam(name = "id") Long id) {
+    public String grades(Model model,
+                         @RequestParam(name = "id") Long id) {
         Optional<Student> studentOptional = studentService.findByStudentId(id);
         if (studentOptional.isPresent()) {
             Student student = studentOptional.get();
 
             model.addAttribute("grades", student.getGrades());
+            model.addAttribute("student", id);
 
             return "grade-list";
         }

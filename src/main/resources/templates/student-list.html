@@ -26,17 +26,8 @@
                 <div class="col-md-2" th:text="${student.getSurname()}"></div>
                 <div class="col-md-2" th:text="${student.getAge()}"></div>
                 <div class="row col-md-5" >
-                    <div class="col-md-4">
-                        <a th:href="@{'/student/remove?id='+${student.getId()}}" class="col-md-12">
-                            <button type="button" class="btn btn-outline-secondary col-md-12">Remove</button>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a th:href="@{'/student/edit?id='+${student.getId()}}" class="col-md-12">
-                            <button type="button" class="btn btn-outline-warning col-md-12">Edit</button>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-6">
                         <a th:href="@{'/student/details?id='+${student.getId()}}" class="col-md-12">
                             <button type="button" class="btn btn-outline-success col-md-12">Details</button>
                         </a>
